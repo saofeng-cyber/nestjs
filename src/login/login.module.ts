@@ -1,7 +1,7 @@
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { LoginService } from './login.service';
 import { LoginController } from './login.controller';
-import { LoggerMiddleware } from 'src/logger/logger.middleware';
+import { LoggerMiddleware } from '@/logger/logger.middleware';
 
 @Module({
   controllers: [LoginController],
