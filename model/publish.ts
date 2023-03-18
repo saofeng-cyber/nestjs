@@ -15,7 +15,7 @@ class EventEmitter implements Emitter {
   }
   emit(eventName: string, data: any): void {
     const e = this.events.get(eventName);
-    if (e.length !== 0) {
+    if (e && e.length !== 0) {
       e.forEach((callback) => {
         callback(data);
       });
@@ -30,13 +30,13 @@ class EventEmitter implements Emitter {
 }
 
 const center = new EventEmitter();
-center.on('love', (data) => {
+center.on('do love', (data) => {
   console.log('data1', data);
 });
-center.on('love', (data) => {
+center.on('do love', (data) => {
   console.log('data2', data);
 });
-center.on('love', (data) => {
+center.on('do love', (data) => {
   console.log('data3', data);
 });
-center.emit('love', '风风想要了');
+center.emit('do love', '风风想要了');
