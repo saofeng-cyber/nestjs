@@ -1,8 +1,6 @@
-import { IsEmail, IsNotEmpty, Length } from 'class-validator';
+import { IsNotEmpty, Length } from 'class-validator';
 
 export class CreateLoginDto {
-  @IsEmail({}, { message: 'email 不是一个合法邮箱' })
-  email: string;
   @IsNotEmpty({
     message: '密码不能为空',
   })
@@ -11,10 +9,5 @@ export class CreateLoginDto {
   @Length(5, 10, {
     message: '用户名长度应该在5-10个单位长度 ',
   })
-  name: string;
-  constructor(email: string, password: string, name: string) {
-    this.email = email;
-    this.password = password;
-    this.name = name;
-  }
+  username: string;
 }
