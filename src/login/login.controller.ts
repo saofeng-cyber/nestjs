@@ -12,27 +12,28 @@ export class LoginController {
   @UseGuards(AuthGuard('local'))
   @Post()
   create(@Body() createLoginDto: CreateLoginDto) {
-    return this.authService.login(createLoginDto.username, createLoginDto.password);
+    // return this.authService.login(createLoginDto.username, createLoginDto.password);
+    return this.loginService.create(createLoginDto);
   }
 
   @UseGuards(AuthGuard('jwt'))
   @Get()
-  findAll() {
-    return this.loginService.findAll();
+  findAll(@Body() query: { username: string; password: string }) {
+    return this.loginService.findAll(query);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.loginService.findOne(+id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLoginDto: UpdateLoginDto) {
+  update(@Param('id') id: number, @Body() updateLoginDto: UpdateLoginDto) {
     return this.loginService.update(+id, updateLoginDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
+  remove(@Param('id') id: number) {
     return this.loginService.remove(+id);
   }
 }
