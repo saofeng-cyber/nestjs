@@ -3,20 +3,23 @@ import { LoginService } from './login.service';
 import { CreateLoginDto } from './dto/create-login.dto';
 import { UpdateLoginDto } from './dto/update-login.dto';
 import { AuthService } from '@/auth/auth.service';
-import { AuthGuard } from '@nestjs/passport';
+import { LocalAuthGuard } from '@/auth/guards/local.guard';
+import { Nojwt } from '@/nojwt/nojwt.decorator';
+// import { JwtAuthGuard } from '@/auth/guards/jwt.guard';
 
+@Nojwt(true)
 @Controller('login')
 export class LoginController {
   constructor(private readonly loginService: LoginService, private readonly authService: AuthService) {}
 
-  @UseGuards(AuthGuard('local'))
+  @UseGuards(LocalAuthGuard)
   @Post()
   create(@Body() createLoginDto: CreateLoginDto) {
-    // return this.authService.login(createLoginDto.username, createLoginDto.password);
-    return this.loginService.create(createLoginDto);
+    return this.authService.login(createLoginDto.username, createLoginDto.password);
+    // return this.loginService.create(createLoginDto);
   }
 
-  @UseGuards(AuthGuard('jwt'))
+  // @UseGuards(JwtAuthGuard)
   @Get()
   findAll(@Body() query: { username: string; password: string }) {
     return this.loginService.findAll(query);
