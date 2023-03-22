@@ -14,9 +14,10 @@ export class LoginController {
 
   @UseGuards(LocalAuthGuard)
   @Post()
-  create(@Body() createLoginDto: CreateLoginDto) {
-    return this.authService.login(createLoginDto.username, createLoginDto.password);
-    // return this.loginService.create(createLoginDto);
+  async create(@Body() createLoginDto: CreateLoginDto) {
+    const { access_token } = await this.authService.login(createLoginDto.username, createLoginDto.password);
+    createLoginDto.token = access_token;
+    return this.loginService.create(createLoginDto);
   }
 
   // @UseGuards(JwtAuthGuard)

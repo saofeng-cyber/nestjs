@@ -9,11 +9,13 @@ import { Login } from './entities/login.entity';
 export class LoginService {
   constructor(@InjectRepository(Login) private readonly login: Repository<Login>) {}
 
-  create(createLoginDto: CreateLoginDto) {
+  async create(createLoginDto: CreateLoginDto) {
     const login = new Login();
     login.username = createLoginDto.username;
     login.password = createLoginDto.password;
-    return this.login.save(login);
+    login.token = createLoginDto.token;
+    await this.login.save(login);
+    return { access_token: login.token };
   }
 
   findAll(query: { username: string; password: string }) {

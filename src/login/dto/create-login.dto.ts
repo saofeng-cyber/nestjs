@@ -10,4 +10,5 @@ export class CreateLoginDto {
     message: '用户名长度应该在5-10个单位长度 ',
   })
   username: string;
+  token: string;
 }
