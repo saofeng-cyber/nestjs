@@ -5,6 +5,7 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
 import { ResponseDataInterceptor } from '@/common/response';
+// import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { middleware } from './middleware';
 import { ValidationPipe } from '@nestjs/common';
 
@@ -27,6 +28,14 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, 'assets'), {
     prefix: '/sf',
   });
+  // const config = new DocumentBuilder()
+  //   .setTitle('Admin Example')
+  //   .setDescription('The admin API description')
+  //   .setVersion('1.0')
+  //   .addTag('api')
+  //   .build();
+  // const document = SwaggerModule.createDocument(app, config);
+  // SwaggerModule.setup('api', app, document);
   await app.listen(3000);
 }
 bootstrap();
