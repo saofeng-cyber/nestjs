@@ -8,6 +8,7 @@ import { ResponseDataInterceptor } from '@/common/response';
 // import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { middleware } from './middleware';
 import { ValidationPipe } from '@nestjs/common';
+import * as session from 'express-session';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
@@ -36,6 +37,7 @@ async function bootstrap() {
   //   .build();
   // const document = SwaggerModule.createDocument(app, config);
   // SwaggerModule.setup('api', app, document);
+  app.use(session({ secret: 'saofeng', name: 'sf.session', rolling: true, cookie: { maxAge: null } }));
   await app.listen(3000);
 }
 bootstrap();

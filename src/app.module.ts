@@ -10,10 +10,11 @@ import { ormoptions } from './typeOrmOptions';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt.guard';
 import { RouterModule } from './router/router.module';
+import { CaptchaController } from './captcha/captcha.controller';
 
 @Module({
   imports: [TypeOrmModule.forRoot(ormoptions), LoginModule, ConfigModule, UploadModule, AuthModule, RouterModule],
-  controllers: [AppController],
+  controllers: [AppController, CaptchaController],
   providers: [
     AppService,
     {
