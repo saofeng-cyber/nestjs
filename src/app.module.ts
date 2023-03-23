@@ -9,9 +9,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ormoptions } from './typeOrmOptions';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt.guard';
+import { RouterModule } from './router/router.module';
 
 @Module({
-  imports: [TypeOrmModule.forRoot(ormoptions), LoginModule, ConfigModule, UploadModule, AuthModule],
+  imports: [TypeOrmModule.forRoot(ormoptions), LoginModule, ConfigModule, UploadModule, AuthModule, RouterModule],
   controllers: [AppController],
   providers: [
     AppService,

@@ -8,7 +8,7 @@ import { Nojwt } from '@/nojwt/nojwt.decorator';
 // import { JwtAuthGuard } from '@/auth/guards/jwt.guard';
 
 @Nojwt(true)
-@Controller('login')
+@Controller('/api/login')
 export class LoginController {
   constructor(private readonly loginService: LoginService, private readonly authService: AuthService) {}
 

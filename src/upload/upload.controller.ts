@@ -6,7 +6,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { join } from 'path';
 
-@Controller('upload')
+@Controller('/api/upload')
 export class UploadController {
   constructor(private readonly uploadService: UploadService) {}
 
