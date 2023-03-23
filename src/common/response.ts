@@ -16,6 +16,7 @@ export class ResponseDataInterceptor implements NestInterceptor {
           msg: 'ok!',
           success: true,
           url,
+          date: new Date().toLocaleString(),
         };
       }),
     );

@@ -10,6 +10,7 @@ import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule, { cors: true });
+  app.setGlobalPrefix('api');
   // 全局使用管道：这里使用的是内置，也可以使用自定义管道，在下文
   app.useGlobalPipes(
     new ValidationPipe({

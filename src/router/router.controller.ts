@@ -3,7 +3,7 @@ import { RouterService } from './router.service';
 import { CreateRouterDto } from './dto/create-router.dto';
 import { UpdateRouterDto } from './dto/update-router.dto';
 
-@Controller('/api/router')
+@Controller('/router')
 export class RouterController {
   constructor(private readonly routerService: RouterService) {}
 
